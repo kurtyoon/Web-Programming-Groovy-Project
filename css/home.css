@@ -1,0 +1,63 @@
+.homepage-layout {
+  text-align: center;
+}
+
+.skills-image-container {
+  text-align: center;
+  display: inline-block;
+  width: 114px;
+  height: 116px;
+  border-radius: 30px 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-right: 2rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-label {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  border-radius: 30px 30px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  opacity: 0.8;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; /* 추가: 다른 요소보다 위에 겹치도록 설정 */
+  visibility: hidden;
+}
+
+.skills-image-container:hover .skill-label {
+  visibility: visible;
+  animation: fadeout1 0.5s;
+  -moz-animation: fadeout1 0.5s;
+  -webkit-animation: fadeout1 0.5s;
+  -o-animation: fadeout1 0.5s;
+}
+
+@keyframes fadeout1 {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
+}
+@-webkit-keyframes fadeout1 {
+  0% {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.8;
+  }
+}

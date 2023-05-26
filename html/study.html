@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/study.css" />
+    <script src="../js/study.js"></script>
+    <title>게시판</title>
+  </head>
+  <body>
+    <div class="root">
+      <div class="homepage-layout">
+        <h1>게시판</h1>
+
+        <div class="category-title">Computer Science</div>
+        <table id="computerScienceTable">
+          <tr>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일자</th>
+          </tr>
+        </table>
+
+        <div class="category-title">Infrastructure</div>
+        <table id="infrastructureTable">
+          <tr>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일자</th>
+          </tr>
+        </table>
+
+        <div class="category-title">Web</div>
+        <table id="webTable">
+          <tr>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일자</th>
+          </tr>
+        </table>
+
+        <div class="category-title">Data Science</div>
+        <table id="dataScienceTable">
+          <tr>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일자</th>
+          </tr>
+        </table>
+
+        <div class="add-button">
+          <button onclick="showPopup()">글쓰기</button>
+        </div>
+
+        <div class="popup-container" id="popupContainer">
+          <div class="popup-content">
+            <h2>글 작성</h2>
+            <label for="title">제목:</label>
+            <input type="text" id="title" /><br /><br />
+            <label for="author">작성자:</label>
+            <input type="text" id="author" /><br /><br />
+            <button onclick="addPost()">작성</button>
+            <button onclick="hidePopup()">취소</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
