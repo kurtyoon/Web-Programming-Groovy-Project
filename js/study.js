@@ -6,6 +6,42 @@ var writeBtn = document.getElementById("writeBtn");
 var submitPost = document.getElementById("submitPost");
 var backBtn = document.getElementById("backBtn");
 
+var categoryDetails = {
+  "Computer Science": [
+    "Alogrithm",
+    "Data Structure",
+    "Network",
+    "OperatingSystem",
+    "Database",
+    "DesignPattern",
+    "Client",
+    "Server",
+    "Cloud",
+    "DevOps",
+    "MLOps",
+    "Analysis",
+    "Visualize",
+    "Modelling",
+    "AI",
+    "Deep learning",
+    "Machine learning",
+    "Reinforcement learning",
+    "NLP",
+  ],
+};
+
+function categoryChange(select) {
+  var subCategory = document.getElementById("subCategory");
+  subCategory.innerHTML = "";
+
+  categoryDetails[select.value].forEach(function (detail) {
+    var option = document.createElement("option");
+    option.text = detail;
+    option.value = detail;
+    subCategory.add(option);
+  });
+}
+
 var postList = [];
 
 writeBtn.addEventListener("click", function () {
@@ -13,10 +49,13 @@ writeBtn.addEventListener("click", function () {
   writePost.style.display = "block";
 });
 
+categoryChange(document.getElementById("category"));
+
 submitPost.addEventListener("click", function (event) {
   event.preventDefault();
 
   var category = document.getElementById("category").value;
+  var subCategory = document.getElementById("subCategory").value;
   var title = document.getElementById("title").value;
   var author = document.getElementById("author").value;
   var content = document.getElementById("content").value;
@@ -24,6 +63,7 @@ submitPost.addEventListener("click", function (event) {
   var newPost = {
     date: new Date().toLocaleDateString(),
     category: category,
+    subCategory: subCategory,
     title: title,
     author: author,
     content: content,
@@ -55,6 +95,10 @@ function updateBoard() {
       "<td>" +
       postList[i].date +
       '</td><td class="postTitle">' +
+      postList[i].category +
+      " - " +
+      postList[i].subCategory +
+      " : " +
       postList[i].title +
       "</td><td>" +
       postList[i].author +

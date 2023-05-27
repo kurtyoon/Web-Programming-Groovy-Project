@@ -23,8 +23,8 @@ td {
 }
 
 #writeBtn {
-  color: white;
-  background-color: black;
+  color: black;
+  background-color: #f0f0f0;
   border: none;
   border-radius: 25px;
   padding: 10px 25px;
@@ -33,7 +33,6 @@ td {
   display: inline-block;
   font-size: 12px;
   margin: 20px 2px 4px 2px;
-  transition-duration: 0.4s;
   cursor: pointer;
 }
 
