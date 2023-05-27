@@ -6,7 +6,7 @@
   text-align: center;
   display: inline-block;
   width: 114px;
-  height: 116px;
+  height: 114px;
   border-radius: 30px 30px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -60,6 +60,10 @@
   to {
     opacity: 0.8;
   }
+}
+
+.skills-box {
+  margin-left: 25px;
 }
 
 .github-link {
