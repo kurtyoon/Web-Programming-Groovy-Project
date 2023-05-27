@@ -6,7 +6,6 @@ window.onload = function () {
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const firstDayOfMonth = new Date(year, month, 1).getDay();
 
-  // Month and Year
   const monthNames = [
     "January",
     "February",
@@ -24,7 +23,6 @@ window.onload = function () {
   document.getElementById("monthAndYear").innerText =
     monthNames[month] + " " + year;
 
-  // Calendar
   const calendarTable = document.getElementById("calandar");
   let output =
     "<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr><tr>";
@@ -42,4 +40,17 @@ window.onload = function () {
 
   output += "</tr>";
   calendarTable.innerHTML = output;
+
+  const items = document.querySelectorAll(".todo-item");
+
+  items.forEach((item) => {
+    const checkbox = item.querySelector('input[type="checkbox"]');
+    checkbox.addEventListener("change", function () {
+      if (this.checked) {
+        item.classList.add("done");
+      } else {
+        item.classList.remove("done");
+      }
+    });
+  });
 };

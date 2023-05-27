@@ -1,45 +1,78 @@
-window.onload = function () {
-  function showPopup() {
-    document.getElementById("popupContainer").style.display = "block";
+var board = document.getElementById("board");
+var writePost = document.getElementById("writePost");
+var viewPost = document.getElementById("viewPost");
+
+var writeBtn = document.getElementById("writeBtn");
+var submitPost = document.getElementById("submitPost");
+var backBtn = document.getElementById("backBtn");
+
+var postList = [];
+
+writeBtn.addEventListener("click", function () {
+  board.style.display = "none";
+  writePost.style.display = "block";
+});
+
+submitPost.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  var category = document.getElementById("category").value;
+  var title = document.getElementById("title").value;
+  var author = document.getElementById("author").value;
+  var content = document.getElementById("content").value;
+
+  var newPost = {
+    date: new Date().toLocaleDateString(),
+    category: category,
+    title: title,
+    author: author,
+    content: content,
+  };
+
+  postList.push(newPost);
+
+  updateBoard();
+
+  document.getElementById("title").value = "";
+  document.getElementById("author").value = "";
+  document.getElementById("content").value = "";
+
+  writePost.style.display = "none";
+  board.style.display = "block";
+});
+
+backBtn.addEventListener("click", function () {
+  viewPost.style.display = "none";
+  board.style.display = "block";
+});
+
+function updateBoard() {
+  var postListNode = document.getElementById("postList");
+  postListNode.innerHTML = "";
+  for (var i = 0; i < postList.length; i++) {
+    var postNode = document.createElement("tr");
+    postNode.innerHTML =
+      "<td>" +
+      postList[i].date +
+      '</td><td class="postTitle">' +
+      postList[i].title +
+      "</td><td>" +
+      postList[i].author +
+      "</td>";
+    postListNode.appendChild(postNode);
   }
-};
 
-window.onload = function () {
-  // 카테고리 이름을 기반으로 테이블 ID를 반환
-  function getCategoryTableName(categoryName) {
-    const formattedCategoryName = categoryName.toLowerCase().replace(" ", "");
-    return formattedCategoryName + "Table";
+  var postTitles = document.getElementsByClassName("postTitle");
+  for (var i = 0; i < postTitles.length; i++) {
+    postTitles[i].addEventListener("click", function (event) {
+      var index = Array.prototype.indexOf.call(postTitles, event.target);
+      var post = postList[index];
+      document.getElementById("postTitle").textContent = post.title;
+      document.getElementById("postContent").textContent = post.content;
+      board.style.display = "none";
+      viewPost.style.display = "block";
+    });
   }
-};
+}
 
-window.onload = function () {
-  // 글쓰기 기능 - 글 추가
-  function addPost() {
-    const title = document.getElementById("title").value;
-    const author = document.getElementById("author").value;
-    const currentDate = new Date().toLocaleDateString();
-
-    const category = document.querySelector(".category-title");
-    const categoryTable = document.getElementById(
-      getCategoryTableName(category.innerText)
-    );
-
-    const row = categoryTable.insertRow(1);
-    const titleCell = row.insertCell(0);
-    const authorCell = row.insertCell(1);
-    const dateCell = row.insertCell(2);
-
-    titleCell.innerHTML = title;
-    authorCell.innerHTML = author;
-    dateCell.innerHTML = currentDate;
-
-    hidePopup();
-  }
-};
-
-window.onload = function () {
-  // 글쓰기 팝업 숨김
-  function hidePopup() {
-    document.getElementById("popupContainer").style.display = "none";
-  }
-};
+updateBoard();
